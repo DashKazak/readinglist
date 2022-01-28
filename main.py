@@ -61,9 +61,13 @@ def change_read():
 
     book_id = ui.get_book_id()
     book = store.get_book_by_id(book_id)  
-    new_read = ui.get_read_value()     
-    book.read = new_read 
-    book.save()
+
+    if book != None:
+        new_read = ui.get_read_value()     
+        book.read = new_read 
+        book.save()
+    else:
+        print('That book is not in the database. Please select an option:')
     
 
 def quit_program():
