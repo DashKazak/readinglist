@@ -193,7 +193,7 @@ class BookStore:
             if book_data:
                 book = Book(book_data['title'], book_data['author'], book_data['read'], book_data['rowid'])
             else:
-                book = None
+                book = None # Wyatt: If the book_data isn't found in the database, book is set to None
 
             con.close()
 
