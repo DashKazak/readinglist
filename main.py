@@ -7,9 +7,7 @@ import ui
 store = BookStore()
 
 def main():
-
     menu = create_menu()
-
     while True:
         choice = ui.display_menu_get_choice(menu)
         action = menu.get_action(choice)
@@ -27,14 +25,13 @@ def create_menu():
     menu.add_option('5', 'Show All Books', show_all_books)
     menu.add_option('6', 'Change Book Read Status', change_read)
     menu.add_option('Q', 'Quit', quit_program)
-
     return menu
 
 
 def add_book():
     new_book = ui.get_book_info()
     new_book.save()
-    
+
 
 def show_read_books():
     read_books = store.get_books_by_read_value(True)
@@ -58,14 +55,13 @@ def search_book():
 
 
 def change_read():
-
     book_id = ui.get_book_id()
     book = store.get_book_by_id(book_id)  
     new_read = ui.get_read_value()     
     book.read = new_read 
     book.save()
+   
     
-
 def quit_program():
     ui.message('Thanks and bye!')
 
