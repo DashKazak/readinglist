@@ -67,7 +67,7 @@ def change_read():
     
 
 def quit_program():
-    ui.message('Thanks and bye!')
+    ui.message('Thanks for using the book reading list!')
 
 
 if __name__ == '__main__':
