@@ -1,6 +1,5 @@
 """ Program to create and manage a list of books that the user wishes to read, and books that the user has read. """
 
-from ast import While
 from bookstore import Book, BookStore
 from menu import Menu
 import ui
