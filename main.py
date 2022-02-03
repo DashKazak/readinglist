@@ -62,11 +62,11 @@ def change_read():
     book_id = ui.get_book_id()
     book = store.get_book_by_id(book_id)  
 
-    if book != None: # Wyatt: If book value is not None, then the changes are saved
+    if book is not None: # If book value is not None, then the changes are saved
         new_read = ui.get_read_value()     
         book.read = new_read 
         book.save()
-    else: # Wyatt: If book value is None, then this message is displayed, and the program jumps back to the main menu
+    else: # If book value is None, then this message is displayed, and the program jumps back to the main menu
         print('That book is not in the database. Please select an option:')
     
 
