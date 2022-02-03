@@ -29,6 +29,7 @@ def show_books(books):
     if books:
         for book in books:
             print(book)
+            
     else:
         print('No books to display')
 
