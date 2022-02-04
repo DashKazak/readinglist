@@ -15,7 +15,7 @@ def main():
     while True:
         choice = ui.display_menu_get_choice(menu)
         action = menu.get_action(choice)
-        action()
+        action() 
         if choice == 'Q':
             break
 
