@@ -68,14 +68,14 @@ def change_read():
     
 def delete_book():
     try:
-        search_id = ui.ask_question('Enter Book ID:')
+        search_id = ui.get_book_id()
         match_id = store.get_book_by_id(search_id)
-        store._delete_book(match_id)
+        match_id.delete()  
     except:
         print('Error: Book Not Found')
 
 def quit_program():
-    ui.message('Thanks for using the book reading list!')
+    ui.message('Thanks and bye!')
 
 
 if __name__ == '__main__':
