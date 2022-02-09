@@ -127,7 +127,7 @@ class BookStore:
             con.close()
             
             if rows_modfied == 0:
-                raise BookError(f'Book with id {book.id} not found')
+                raise BookError(f'Book with ID {book.id} not found') # capitalized ID
 
             
         def _delete_book(self, book):
@@ -145,7 +145,7 @@ class BookStore:
             con.close()
 
             if deleted_count == 0:
-                raise BookError(f'Book with id {id} not found in store.')
+                raise BookError(f'Book with ID {id} not found in store.') # capitalized ID
 
 
         def delete_all_books(self):
