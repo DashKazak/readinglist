@@ -25,7 +25,7 @@ def create_menu():
     menu.add_option('3', 'Show Unread Books', show_unread_books)
     menu.add_option('4', 'Show Read Books', show_read_books)
     menu.add_option('5', 'Show All Books', show_all_books)
-    menu.add_option('6', 'Show Number of Books in Database', show_count_books) # new menu option
+    menu.add_option('6', 'Show Number of Books in Database', book_count) # new menu option to show number of books
     menu.add_option('7', 'Change Book Read Status', change_read)
     menu.add_option('Q', 'Quit', quit_program)
 
@@ -51,9 +51,9 @@ def show_all_books():
     books = store.get_all_books()
     ui.show_books(books)
 
-def show_count_books(): # new method to count number of books in database
-    count = store.get_count_books()
-    ui.show_books(f'Test {count}')
+def book_count(): # new method to count number of books in database
+    count = store.book_count() # stores number of books into a count variable
+    print(f'Number of books in database: {count}') # prints the count variable to the user
 
 
 def search_book():

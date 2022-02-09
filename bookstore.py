@@ -266,27 +266,6 @@ class BookStore:
 
             return books
 
-        def get_count_books(self): # new method
-            """ :returns entire book list """
-    
-            get_all_books_sql = 'SELECT rowid, * FROM books'
-
-            count = 0
-
-            con = sqlite3.connect(db)
-            con.row_factory = sqlite3.Row
-            rows = con.execute(get_all_books_sql)
-           # books = []
-
-            for r in rows:
-             #   book = Book(r['title'], r['author'], r['read'], r['rowid'])
-             #   books.append(book)
-                count += 1
-
-            con.close()
-
-            return str(count)
-
 
         def book_count(self):
             """ :returns the number of books in the store """
