@@ -19,6 +19,9 @@ class Book:
 
 
     def save(self):
+        """To save to the database, 
+        function save checks if the book is already in the database. 
+        If the book is already in the database, the _update_book function is called. if the book is new to the database, new book ID created and added."""
         if self.id:
             self.bookstore._update_book(self)
         else:
