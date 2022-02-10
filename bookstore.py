@@ -185,7 +185,7 @@ class BookStore:
             :param id the ID to search for
             :returns the book, if found, or None if book not found.
             """
-         
+            
             get_book_by_id_sql = 'SELECT rowid, * FROM books WHERE rowid = ?'
 
             con = sqlite3.connect(db) 
@@ -195,11 +195,13 @@ class BookStore:
             
             if book_data:
                 book = Book(book_data['title'], book_data['author'], book_data['read'], book_data['rowid'])
-                    
-            con.close()            
-            
-            return book 
+            else:
+                book = None # If the book_data isn't found in the database, book is set to None
 
+            con.close()
+
+            return book
+            
 
         def book_search(self, term):
             """ Searches the store for books whose author or title contain a search term. Case insensitive.
