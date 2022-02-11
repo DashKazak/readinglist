@@ -157,7 +157,7 @@ class BookStore:
             :param id the ID to search for
             :returns the book, if found, or None if book not found.
             """     
-                   
+
             get_book_by_id_sql = 'SELECT rowid, * FROM books WHERE rowid = ?'
             con = sqlite3.connect(db) 
             con.row_factory = sqlite3.Row  # This row_factory allows access to data by row name 
@@ -167,7 +167,9 @@ class BookStore:
                 book = Book(book_data['title'], book_data['author'], book_data['read'], book_data['rowid'])
             else:
                 book = None # If the book_data isn't found in the database, book is set to None
+            
             con.close()
+            
             return book
             
 
