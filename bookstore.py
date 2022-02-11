@@ -256,6 +256,8 @@ class BookStore:
     
             get_all_books_sql = 'SELECT rowid, * FROM books'
 
+            count = 0
+
             con = sqlite3.connect(db)
             con.row_factory = sqlite3.Row
             rows = con.execute(get_all_books_sql)
@@ -264,9 +266,10 @@ class BookStore:
             for r in rows:
                 book = Book(r['title'], r['author'], r['read'], r['rowid'])
                 books.append(book)
+                count += 1
 
-            con.close()            
-            
+            con.close()
+
             return books
 
 

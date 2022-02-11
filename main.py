@@ -3,6 +3,7 @@
 
 from bookstore import Book, BookStore
 from menu import Menu
+from readinglist.bookstore import BookError
 
 import ui
 
@@ -27,16 +28,23 @@ def create_menu():
     menu.add_option('3', 'Show Unread Books', show_unread_books)
     menu.add_option('4', 'Show Read Books', show_read_books)
     menu.add_option('5', 'Show All Books', show_all_books)
-    menu.add_option('6', 'Change Book Read Status', change_read)
-    menu.add_option('7', 'Delete Book', delete_book)
+    menu.add_option('6', 'Show Number of Books in Database', book_count) # new menu option to show number of books
+    menu.add_option('7', 'Change Book Read Status', change_read)
+    menu.add_option('8', 'Delete Book', delete_book)
     menu.add_option('Q', 'Quit', quit_program)
 
     return menu
 
 
 def add_book():
-    new_book = ui.get_book_info()
-    new_book.save()
+    try: 
+        new_book = ui.get_book_info()
+        new_book.save() #the program will try to save the file
+        # but, in bookstore.py line 107 we indicated that the book list can't have duplicates. If this error is encountered, the program will jump to the except statement below instead of printing long developer log error message. 
+        
+    except BookError as e: 
+        ui.message(e)
+        
 
 def show_read_books():
     read_books = store.get_books_by_read_value(True)
@@ -51,6 +59,10 @@ def show_unread_books():
 def show_all_books():
     books = store.get_all_books()
     ui.show_books(books)
+
+def book_count(): # new method to count number of books in database
+    count = store.book_count() # stores number of books into a count variable
+    ui.message(count) # prints the count variable to the user
 
 
 def search_book():
