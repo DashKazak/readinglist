@@ -68,7 +68,7 @@ def change_read():
         book.read = new_read 
         book.save()
     else: # If book value is None, then this message is displayed, and the program jumps back to the main menu
-        print('That book is not in the database. Please select an option:')
+        ui.message('That book is not in the database. Please select an option:')
     
 def delete_book():
     try:
