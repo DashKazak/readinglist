@@ -57,7 +57,8 @@ def search_book():
 
 def change_read():
     book_id = ui.get_book_id()
-    book = store.get_book_by_id(book_id)  
+    book = store.get_book_by_id(book_id) 
+     
     if book is not None: # If book value is not None, then the changes are saved
         new_read = ui.get_read_value()     
         book.read = new_read 
