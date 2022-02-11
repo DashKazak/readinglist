@@ -1,7 +1,10 @@
 """ Program to create and manage a list of books that the user wishes to read, and books that the user has read. """
 
+
 from bookstore import Book, BookStore
 from menu import Menu
+from readinglist.bookstore import BookError
+
 import ui
 
 store = BookStore()
@@ -33,9 +36,14 @@ def create_menu():
 
 
 def add_book():
-    new_book = ui.get_book_info()
-    new_book.save()
-    
+    try: 
+        new_book = ui.get_book_info()
+        new_book.save() #the program will try to save the file
+        # but, in bookstore.py line 107 we indicated that the book list can't have duplicates. If this error is encountered, the program will jump to the except statement below instead of printing long developer log error message. 
+        
+    except BookError as e: 
+        ui.message(e)
+        
 
 def show_read_books():
     read_books = store.get_books_by_read_value(True)
