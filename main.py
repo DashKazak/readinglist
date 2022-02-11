@@ -27,6 +27,7 @@ def create_menu():
     menu.add_option('5', 'Show All Books', show_all_books)
     menu.add_option('6', 'Show Number of Books in Database', book_count) # new menu option to show number of books
     menu.add_option('7', 'Change Book Read Status', change_read)
+    menu.add_option('8', 'Delete Book', delete_book)
     menu.add_option('Q', 'Quit', quit_program)
 
     return menu
@@ -66,10 +67,21 @@ def change_read():
 
     book_id = ui.get_book_id()
     book = store.get_book_by_id(book_id)  
-    new_read = ui.get_read_value()     
-    book.read = new_read 
-    book.save()
+
+    if book is not None: # If book value is not None, then the changes are saved
+        new_read = ui.get_read_value()     
+        book.read = new_read 
+        book.save()
+    else: # If book value is None, then this message is displayed, and the program jumps back to the main menu
+        print('That book is not in the database. Please select an option:')
     
+def delete_book():
+    try:
+        search_id = ui.get_book_id()
+        match_id = store.get_book_by_id(search_id)
+        match_id.delete()  
+    except:
+        print('Error: Book Not Found')
 
 def quit_program():
     ui.message('Thanks and bye!')
