@@ -66,9 +66,9 @@ def change_read():
     book.read = new_read 
     book.save()
     if book.read: 
-        print(f'You changed {book.title} by {book.author} to status \'read\'')
+        ui.message(f'You changed {book.title} by {book.author} to status \'read\'')
     else: 
-        print(f'You changed {book.title} by {book.author}  to status \'not read\'')
+        ui.message(f'You changed {book.title} by {book.author}  to status \'not read\'')
     
 
 def quit_program():
