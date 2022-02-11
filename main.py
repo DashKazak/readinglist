@@ -53,7 +53,7 @@ def show_all_books():
 
 def book_count(): # new method to count number of books in database
     count = store.book_count() # stores number of books into a count variable
-    print(f'Number of books in database: {count}') # prints the count variable to the user
+    ui.message(count) # prints the count variable to the user
 
 
 def search_book():
