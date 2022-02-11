@@ -16,7 +16,7 @@ def main():
     while True:
         choice = ui.display_menu_get_choice(menu)
         action = menu.get_action(choice)
-        action()
+        action() 
         if choice == 'Q':
             break
 
@@ -37,15 +37,10 @@ def create_menu():
 
 
 def add_book():
-    try: 
-        new_book = ui.get_book_info()
-        new_book.save() #the program will try to save the file
-        # but, in bookstore.py line 107 we indicated that the book list can't have duplicates. If this error is encountered, the program will jump to the except statement below instead of printing long developer log error message. 
-        
-    except BookError as e: 
-        ui.message(e)
-        
 
+    new_book = ui.get_book_info()
+    new_book.save()
+    
 def show_read_books():
     read_books = store.get_books_by_read_value(True)
     ui.show_books(read_books)
