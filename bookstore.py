@@ -3,6 +3,7 @@ import os
 
 db = os.path.join('database', 'books.db')
 
+
 class Book:
 
     """ Represents one book in the program. 
