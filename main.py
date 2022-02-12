@@ -12,7 +12,6 @@ store = BookStore()
 def main():
 
     menu = create_menu()
-
     while True:
         choice = ui.display_menu_get_choice(menu)
         action = menu.get_action(choice)
@@ -32,7 +31,6 @@ def create_menu():
     menu.add_option('7', 'Change Book Read Status', change_read)
     menu.add_option('8', 'Delete Book', delete_book)
     menu.add_option('Q', 'Quit', quit_program)
-
     return menu
 
 
