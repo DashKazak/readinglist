@@ -95,7 +95,7 @@ def delete_book():
         match_id = store.get_book_by_id(search_id)
         match_id.delete()  
     except:
-        print('Error: Book Not Found')
+        ui.message('Error: Book Not Found')
 
 def quit_program():
     ui.message('Thanks and bye!')
