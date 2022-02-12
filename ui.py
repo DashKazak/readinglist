@@ -7,7 +7,7 @@ def display_menu_get_choice(menu):
      :returns: the user's choice """
     while True:
         print(menu)
-        choice = input('Enter choice? ')
+        choice = input('Enter choice? ').upper() #this will accept both uppercase and lowercase of the Q (quit) but, in my understanding, will have no effect on number in the string format
         if menu.is_valid(choice):
             return choice
         else:

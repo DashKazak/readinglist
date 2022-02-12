@@ -1,17 +1,21 @@
 """ Program to create and manage a list of books that the user wishes to read, and books that the user has read. """
 
+
 from bookstore import Book, BookStore
 from menu import Menu
+from readinglist.bookstore import BookError
+
 import ui
 
 store = BookStore()
 
 def main():
+
     menu = create_menu()
     while True:
         choice = ui.display_menu_get_choice(menu)
         action = menu.get_action(choice)
-        action()
+        action() 
         if choice == 'Q':
             break
 
@@ -23,8 +27,9 @@ def create_menu():
     menu.add_option('3', 'Show Unread Books', show_unread_books)
     menu.add_option('4', 'Show Read Books', show_read_books)
     menu.add_option('5', 'Show All Books', show_all_books)
-    menu.add_option('6', 'Change Book Read Status', change_read)
-    menu.add_option('7', 'Delete Book', delete_book)
+    menu.add_option('6', 'Show Number of Books in Database', book_count) # new menu option to show number of books
+    menu.add_option('7', 'Change Book Read Status', change_read)
+    menu.add_option('8', 'Delete Book', delete_book)
     menu.add_option('Q', 'Quit', quit_program)
     return menu
 
@@ -33,7 +38,6 @@ def add_book():
     new_book = ui.get_book_info()
     new_book.save()
     
-
 def show_read_books():
     read_books = store.get_books_by_read_value(True)
     ui.show_books(read_books)
@@ -48,6 +52,10 @@ def show_all_books():
     books = store.get_all_books()
     ui.show_books(books)
 
+def book_count(): # new method to count number of books in database
+    count = store.book_count() # stores number of books into a count variable
+    ui.message(count) # prints the count variable to the user
+
 
 def search_book():
     search_term = ui.ask_question('Enter search term, will match partial authors or titles.')
@@ -57,8 +65,8 @@ def search_book():
 
 def change_read():
     book_id = ui.get_book_id()
-    book = store.get_book_by_id(book_id) 
-     
+    book = store.get_book_by_id(book_id)  
+
     if book is not None: # If book value is not None, then the changes are saved
         new_read = ui.get_read_value()     
         book.read = new_read 
@@ -72,7 +80,7 @@ def delete_book():
         match_id = store.get_book_by_id(search_id)
         match_id.delete()  
     except:
-        print('Error: Book Not Found')
+        ui.message('Error: Book Not Found')
 
 def quit_program():
     ui.message('Thanks and bye!')
