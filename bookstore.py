@@ -5,9 +5,11 @@ db = os.path.join('database', 'books.db')
 
 
 class Book:
+
     """ Represents one book in the program. 
     Before books are saved, create without ID then call save() method to save to DB and create an ID. 
     Future calls to save() will update the database record for the book with this id. """
+    
     def __init__(self, title, author, read=False, id=None):
         self.title = title 
         self.author = author
@@ -158,17 +160,22 @@ class BookStore:
             """ Searches list for Book with given ID,
             :param id the ID to search for
             :returns the book, if found, or None if book not found.
-            """           
+            """       
+
             get_book_by_id_sql = 'SELECT rowid, * FROM books WHERE rowid = ?'
+
             con = sqlite3.connect(db) 
             con.row_factory = sqlite3.Row  # This row_factory allows access to data by row name 
             rows = con.execute(get_book_by_id_sql, (id,) )
             book_data = rows.fetchone()  # Get first result             
+         
             if book_data:
                 book = Book(book_data['title'], book_data['author'], book_data['read'], book_data['rowid'])
             else:
                 book = None # If the book_data isn't found in the database, book is set to None
+        
             con.close()
+         
             return book
             
 
@@ -210,17 +217,23 @@ class BookStore:
 
         def get_all_books(self):
             """ :returns entire book list """    
+            
             get_all_books_sql = 'SELECT rowid, * FROM books'
+          
             count = 0
+          
             con = sqlite3.connect(db)
             con.row_factory = sqlite3.Row
             rows = con.execute(get_all_books_sql)
+         
             books = []
             for r in rows:
                 book = Book(r['title'], r['author'], r['read'], r['rowid'])
                 books.append(book)
                 count += 1
+          
             con.close()
+           
             return books
 
 
