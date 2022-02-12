@@ -157,11 +157,11 @@ class BookStore:
 
 
         def get_book_by_id(self, id):
-            
+
             """ Searches list for Book with given ID,
             :param id the ID to search for
             :returns the book, if found, or None if book not found.
-            """       
+            
             
             get_book_by_id_sql = 'SELECT rowid, * FROM books WHERE rowid = ?'
 
