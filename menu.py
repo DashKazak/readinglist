@@ -35,4 +35,3 @@ class Menu:
         """ :returns: all the menu options and their descriptions, one per line. """
         texts = [f'{key}: {self.text_descriptions[key]}' for key in self.text_descriptions.keys()]
         return '\n'.join(texts)
-
